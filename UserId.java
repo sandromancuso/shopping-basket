@@ -6,4 +6,8 @@ public class UserId {
     public UserId(String id) {
         this.id = id;
     }
+
+    public String id() {
+        return id;
+    }
 }

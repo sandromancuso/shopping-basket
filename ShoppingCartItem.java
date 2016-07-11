@@ -15,6 +15,18 @@ public class ShoppingCartItem {
         this.quantity = quantity;
     }
 
+    public ProductId productId() {
+        return productId;
+    }
+
+    public int quantity() {
+        return quantity;
+    }
+
+    public UserId userId() {
+        return userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         return reflectionEquals(this, o);
