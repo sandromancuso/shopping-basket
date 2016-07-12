@@ -29,4 +29,13 @@ public class ShoppingBasketItem {
     public int hashCode() {
         return reflectionHashCode(this);
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingBasketItem{" +
+                "productID=" + productID +
+                ", quantity=" + quantity +
+                ", unitPrice=" + unitPrice +
+                '}';
+    }
 }

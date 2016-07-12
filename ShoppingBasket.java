@@ -38,4 +38,12 @@ public class ShoppingBasket {
         return reflectionHashCode(this);
     }
 
+    @Override
+    public String toString() {
+        return "ShoppingBasket{" +
+                "creationDate=" + creationDate +
+                ", userID=" + userID +
+                ", items=" + items +
+                '}';
+    }
 }
