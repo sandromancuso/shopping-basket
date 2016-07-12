@@ -21,11 +21,11 @@ public class AddItemsToShoppingBasketFeature {
     private static final LocalDate CREATION_DATE = LocalDate.of(2016, 7, 1);
 
     private static final ProductID THE_HOBBIT_ID = new ProductID("10002");
-    private static final BigDecimal UNIT_PRICE_FOR_THE_HOBBIT = BigDecimal.valueOf(5);
+    private static final BigDecimal UNIT_PRICE_FOR_THE_HOBBIT = BigDecimal.valueOf(5.0);
     private static final int QTY_2 = 2;
 
     private static final ProductID BREAKING_BAD_ID = new ProductID("20110");
-    private static final BigDecimal UNIT_PRICE_FOR_BREAKING_BAD = BigDecimal.valueOf(7);
+    private static final BigDecimal UNIT_PRICE_FOR_BREAKING_BAD = BigDecimal.valueOf(7.0);
     private static final int QTY_5 = 5;
 
     @Mock Clock clock;
@@ -50,10 +50,10 @@ public class AddItemsToShoppingBasketFeature {
         assertThat(shoppingBasket, is(aShoppingBasket()
                                             .createdOn(CREATION_DATE)
                                             .ownedBy(USER_ID_1)
-                                            .withItem(THE_HOBBIT_ID, QTY_2, null)
-                                            .withItem(BREAKING_BAD_ID, QTY_5, null)
+                                            .withItem(THE_HOBBIT_ID, QTY_2, UNIT_PRICE_FOR_THE_HOBBIT)
+                                            .withItem(BREAKING_BAD_ID, QTY_5, UNIT_PRICE_FOR_BREAKING_BAD)
                                             .build()));
-        assertThat(shoppingBasket.total(), is(BigDecimal.valueOf(45)));
+        assertThat(shoppingBasket.total(), is(BigDecimal.valueOf(45.0)));
     }
 
 }
