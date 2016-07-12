@@ -33,14 +33,14 @@ public class ShoppingBasketRepositoryShould {
 
     @Test public void
     create_a_shopping_basket_when_first_item_is_added() {
-        shoppingBasketRepository.addItem(USER_ID, new ShoppingBasketItem(PRODUCT_ID, QTY_2));
+        shoppingBasketRepository.addItem(USER_ID, new ShoppingBasketItem(PRODUCT_ID, QTY_2, null));
 
         ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(USER_ID);
 
         assertThat(shoppingBasket, is(aShoppingBasket()
                                             .createdOn(CURRENT_DATE)
                                             .ownedBy(USER_ID)
-                                            .withItem(PRODUCT_ID, QTY_2)
+                                            .withItem(PRODUCT_ID, QTY_2, null)
                                             .build()));
     }
 

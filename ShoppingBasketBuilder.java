@@ -1,5 +1,6 @@
 package com.codurance.craftingcode.exercise_10_shopping_cart;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,8 @@ public class ShoppingBasketBuilder {
         return this;
     }
 
-    public ShoppingBasketBuilder withItem(ProductID productID, int quantity) {
-        this.items.add(new ShoppingBasketItem(productID, quantity));
+    public ShoppingBasketBuilder withItem(ProductID productID, int quantity, BigDecimal unitPrice) {
+        this.items.add(new ShoppingBasketItem(productID, quantity, unitPrice));
         return this;
     }
 
