@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+
 public class ShoppingBasket {
     private final UserID userID;
     private final LocalDate creationDate;
@@ -22,4 +25,15 @@ public class ShoppingBasket {
     public BigDecimal total() {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return reflectionHashCode(this);
+    }
+
 }
