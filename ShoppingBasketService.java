@@ -2,17 +2,18 @@ package com.codurance.craftingcode.exercise_10_shopping_cart;
 
 public class ShoppingBasketService {
 
-    private UserID userID;
-    private ProductID productID;
-    private int quantity;
+    private ShoppingBasketRepository shoppingBasketRepository;
+
+    public ShoppingBasketService(ShoppingBasketRepository shoppingBasketRepository) {
+        this.shoppingBasketRepository = shoppingBasketRepository;
+    }
 
     public void addItem(UserID userID, ProductID productID, int quantity) {
-        this.userID = userID;
-        this.productID = productID;
-        this.quantity = quantity;
+        ShoppingBasketItem item = new ShoppingBasketItem(productID, quantity);
+        shoppingBasketRepository.addItem(userID, item);
     }
 
     public ShoppingBasket basketFor(UserID userID) {
-        return null;
+        return shoppingBasketRepository.basketFor(userID);
     }
 }
