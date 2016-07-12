@@ -32,13 +32,15 @@ public class ShoppingBasketServiceShould {
 
     @Before
     public void initialise() {
-        shoppingBasketService = new ShoppingBasketService(priceService, shoppingBasketRepository);
+        shoppingBasketService =
+                new ShoppingBasketService(priceService, shoppingBasketRepository);
     }
 
     @Test public void
     add_new_item_to_shopping_basket() {
         given(priceService.priceFor(PRODUCT_ID)).willReturn(PRODUCT_UNIT_PRICE);
-        ShoppingBasketItem item = new ShoppingBasketItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE);
+        ShoppingBasketItem item =
+                new ShoppingBasketItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE);
 
         shoppingBasketService.addItem(USER_ID, PRODUCT_ID, QTY_2);
 
@@ -47,7 +49,8 @@ public class ShoppingBasketServiceShould {
 
     @Test public void
     return_a_shopping_basket_for_a_given_user() {
-        given(shoppingBasketRepository.basketFor(USER_ID)).willReturn(USER_SHOPPING_BASKET);
+        given(shoppingBasketRepository.basketFor(USER_ID))
+                .willReturn(USER_SHOPPING_BASKET);
 
         ShoppingBasket shoppingBasket = shoppingBasketService.basketFor(USER_ID);
 
