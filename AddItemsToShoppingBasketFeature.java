@@ -34,7 +34,8 @@ public class AddItemsToShoppingBasketFeature {
 
     @Before
     public void initialise() {
-        shoppingBasketService = new ShoppingBasketService();
+        ShoppingBasketRepository shoppingBasketRepository = new ShoppingBasketRepository();
+        shoppingBasketService = new ShoppingBasketService(shoppingBasketRepository);
     }
 
     @Test public void
@@ -48,8 +49,8 @@ public class AddItemsToShoppingBasketFeature {
         assertThat(shoppingBasket, is(aShoppingBasket()
                                             .createdOn(CREATION_DATE)
                                             .ownedBy(USER_ID_1)
-                                            .withItem(THE_HOBBIT_ID, QTY_2, UNIT_PRICE_FOR_THE_HOBBIT)
-                                            .withItem(BREAKING_BAD_ID, QTY_5, UNIT_PRICE_FOR_BREAKING_BAD)
+                                            .withItem(THE_HOBBIT_ID, QTY_2)
+                                            .withItem(BREAKING_BAD_ID, QTY_5)
                                             .build()));
         assertThat(shoppingBasket.total(), is(BigDecimal.valueOf(45)));
     }
