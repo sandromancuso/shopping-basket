@@ -1,15 +1,23 @@
 package com.codurance.craftingcode.exercise_10_shopping_cart;
 
+import java.math.BigDecimal;
+
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
 public class ShoppingBasketItem {
     private final ProductID productID;
     private final int quantity;
+    private BigDecimal unitPrice;
 
-    public ShoppingBasketItem(ProductID productID, int quantity) {
+    public ShoppingBasketItem(ProductID productID, int quantity, BigDecimal unitPrice) {
         this.productID = productID;
         this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal totalPrice() {
+        return BigDecimal.valueOf(quantity * unitPrice.doubleValue());
     }
 
     @Override

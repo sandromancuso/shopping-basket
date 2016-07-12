@@ -23,7 +23,9 @@ public class ShoppingBasket {
     }
 
     public BigDecimal total() {
-        throw new UnsupportedOperationException();
+        return BigDecimal.valueOf(items.stream()
+                     .map(item -> item.totalPrice().doubleValue())
+                     .reduce((t, acc) -> acc + t).get());
     }
 
     @Override
