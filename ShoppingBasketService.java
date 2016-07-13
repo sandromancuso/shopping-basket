@@ -14,10 +14,10 @@ public class ShoppingBasketService {
     }
 
     public void addItem(UserID userID, ProductID productID, int quantity) {
+        ShoppingBasket basket = shoppingBasketRepository.basketFor(userID);
         BigDecimal productUnitPrice = priceService.priceFor(productID);
-        ShoppingBasketItem item =
-            new ShoppingBasketItem(productID, quantity, productUnitPrice);
-        shoppingBasketRepository.addItem(userID, item);
+        basket.add(new ShoppingBasketItem(productID, quantity, productUnitPrice));
+        shoppingBasketRepository.save(basket);
     }
 
     public ShoppingBasket basketFor(UserID userID) {

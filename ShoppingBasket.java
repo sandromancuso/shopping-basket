@@ -8,12 +8,12 @@ import java.util.List;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
-public class ShoppingBasket {
+class ShoppingBasket {
     private final UserID userID;
     private final LocalDate creationDate;
     private List<ShoppingBasketItem> items = new ArrayList<>();
 
-    public ShoppingBasket(UserID userID, LocalDate creationDate) {
+    ShoppingBasket(UserID userID, LocalDate creationDate) {
         this.userID = userID;
         this.creationDate = creationDate;
     }
@@ -22,10 +22,14 @@ public class ShoppingBasket {
         items.add(item);
     }
 
-    public BigDecimal total() {
+    BigDecimal total() {
         return BigDecimal.valueOf(items.stream()
                      .map(item -> item.totalPrice().doubleValue())
-                     .reduce((t, acc) -> acc + t).get());
+                     .reduce((t, acc) -> acc + t).orElse(0.0));
+    }
+
+    UserID userId() {
+        return userID;
     }
 
     @Override
