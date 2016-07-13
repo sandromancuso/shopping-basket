@@ -38,13 +38,14 @@ public class ShoppingBasketServiceShould {
 
     @Test public void
     add_new_item_to_shopping_basket() {
+        ShoppingBasket shoppingBasket = aShoppingBasket().build();
+        given(shoppingBasketRepository.basketFor(USER_ID)).willReturn(shoppingBasket);
         given(priceService.priceFor(PRODUCT_ID)).willReturn(PRODUCT_UNIT_PRICE);
-        ShoppingBasketItem item =
-                new ShoppingBasketItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE);
 
         shoppingBasketService.addItem(USER_ID, PRODUCT_ID, QTY_2);
 
-        verify(shoppingBasketRepository).addItem(USER_ID, item);
+        verify(shoppingBasketRepository).save(
+                aShoppingBasket().withItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE).build());
     }
 
     @Test public void

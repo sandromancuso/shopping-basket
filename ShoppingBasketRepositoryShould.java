@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static com.codurance.craftingcode.exercise_10_shopping_cart.ShoppingBasketBuilder.aShoppingBasket;
@@ -20,6 +21,7 @@ public class ShoppingBasketRepositoryShould {
     private static final LocalDate CURRENT_DATE = LocalDate.now();
     private static final ProductID PRODUCT_ID = new ProductID("10001");
     private static final int QTY_2 = 2;
+    private static final BigDecimal PRODUCT_UNIT_PRICE = BigDecimal.TEN;
 
     @Mock Clock clock;
 
@@ -32,16 +34,26 @@ public class ShoppingBasketRepositoryShould {
     }
 
     @Test public void
-    create_a_shopping_basket_when_first_item_is_added() {
-        shoppingBasketRepository.addItem(USER_ID, new ShoppingBasketItem(PRODUCT_ID, QTY_2, null));
-
+    create_and_return_a_new_shopping_basket_for_a_user_when_she_does_not_have_one() {
         ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(USER_ID);
 
         assertThat(shoppingBasket, is(aShoppingBasket()
                                             .createdOn(CURRENT_DATE)
                                             .ownedBy(USER_ID)
-                                            .withItem(PRODUCT_ID, QTY_2, null)
                                             .build()));
+    }
+
+    @Test public void
+    save_user_basket() {
+        ShoppingBasket userBasket = aShoppingBasket()
+                                            .createdOn(CURRENT_DATE)
+                                            .ownedBy(USER_ID)
+                                            .withItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE)
+                                            .build();
+
+        ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(USER_ID);
+
+        assertThat(shoppingBasket, is(userBasket));
     }
 
 }
