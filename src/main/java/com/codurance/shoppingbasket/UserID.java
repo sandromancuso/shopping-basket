@@ -1,4 +1,4 @@
-package com.codurance.craftingcode.exercise_10_shopping_cart;
+package com.codurance.shoppingbasket;
 
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;

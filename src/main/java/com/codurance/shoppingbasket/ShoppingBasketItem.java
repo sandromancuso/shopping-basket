@@ -1,4 +1,4 @@
-package com.codurance.craftingcode.exercise_10_shopping_cart;
+package com.codurance.shoppingbasket;
 
 import java.math.BigDecimal;
 
