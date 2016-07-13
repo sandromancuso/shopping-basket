@@ -40,7 +40,7 @@ public class AddItemsToShoppingBasketFeature {
     }
 
     @Test public void
-    display_shopping_basket_after_adding_items_to_it() {
+    return_basket_containing_all_the_items_added_to_it() {
         given(clock.today()).willReturn(CREATION_DATE);
         shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
         shoppingBasketService.addItem(USER_ID_1, BREAKING_BAD_ID, QTY_5);
