@@ -8,7 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
 
-import static com.codurance.craftingcode.exercise_10_shopping_cart.ShoppingBasketBuilder.aShoppingBasket;
+import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
