@@ -3,12 +3,12 @@ package com.codurance.shoppingbasket;
 import java.util.HashMap;
 import java.util.Map;
 
-class ShoppingBasketRepository {
+public class ShoppingBasketRepository {
 
     private Clock clock;
     private Map<UserID, ShoppingBasket> baskets = new HashMap<>();
 
-    ShoppingBasketRepository(Clock clock) {
+    public ShoppingBasketRepository(Clock clock) {
         this.clock = clock;
     }
 

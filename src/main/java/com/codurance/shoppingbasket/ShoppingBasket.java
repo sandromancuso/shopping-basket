@@ -8,7 +8,7 @@ import java.util.List;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
-class ShoppingBasket {
+public class ShoppingBasket {
     private final UserID userID;
     private final LocalDate creationDate;
     private List<ShoppingBasketItem> items = new ArrayList<>();
@@ -22,7 +22,7 @@ class ShoppingBasket {
         items.add(item);
     }
 
-    BigDecimal total() {
+    public BigDecimal total() {
         return BigDecimal.valueOf(items.stream()
                      .map(item -> item.totalPrice().doubleValue())
                      .reduce((t, acc) -> acc + t).orElse(0.0));

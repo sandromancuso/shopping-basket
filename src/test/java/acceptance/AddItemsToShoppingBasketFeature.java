@@ -1,5 +1,6 @@
-package com.codurance.shoppingbasket;
+package acceptance;
 
+import com.codurance.shoppingbasket.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,8 @@ public class AddItemsToShoppingBasketFeature {
     private static final BigDecimal UNIT_PRICE_FOR_BREAKING_BAD = BigDecimal.valueOf(7.0);
     private static final int QTY_5 = 5;
 
-    @Mock Clock clock;
+    @Mock
+    Clock clock;
 
     private ShoppingBasketService shoppingBasketService;
 
