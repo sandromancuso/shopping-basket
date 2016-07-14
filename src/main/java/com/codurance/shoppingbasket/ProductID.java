@@ -20,4 +20,7 @@ public class ProductID {
         return reflectionHashCode(this);
     }
 
+    public String value() {
+        return id;
+    }
 }

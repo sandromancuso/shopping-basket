@@ -20,4 +20,8 @@ public class UserID {
     public int hashCode() {
         return reflectionHashCode(this);
     }
+
+    public String value() {
+        return id;
+    }
 }
