@@ -35,11 +35,6 @@ Products available (in-memory repository):
     }    
 ```    
 
-### Scenario 2 - Log items added to basket 
-
-- Log items added to shopping cart on the console: 
-    [ITEM ADDED TO SHOPPING CART]: User[<ID>], Product[ID], Quantity[<N>] 
-
 ### Scenario 3 - Stock restriction
 
 - If there are not enough items available in stock for purchase, throw exception
