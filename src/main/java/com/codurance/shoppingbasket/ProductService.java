@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PriceService {
+public class ProductService {
 
     private static final ProductID LOTR = new ProductID("10001");
     private static final ProductID THE_HOBBIT = new ProductID("10002");

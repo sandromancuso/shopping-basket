@@ -19,11 +19,11 @@ public class PriceServiceShould {
     private static final BigDecimal NINE_POUNDS = BigDecimal.valueOf(9.0);
     private static final BigDecimal SEVEN_POUNDS = BigDecimal.valueOf(7.0);
 
-    private PriceService priceSerivce;
+    private ProductService priceSerivce;
 
     @Before
     public void initialise() {
-        priceSerivce = new PriceService();
+        priceSerivce = new ProductService();
     }
 
     @Test public void

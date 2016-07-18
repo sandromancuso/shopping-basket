@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 
 public class ShoppingBasketService {
 
-    private PriceService priceService;
+    private ProductService productService;
     private ShoppingBasketRepository shoppingBasketRepository;
 	private StockService stockService;
 
-	public ShoppingBasketService(PriceService priceService,
+	public ShoppingBasketService(ProductService productService,
                                  ShoppingBasketRepository shoppingBasketRepository,
                                  StockService stockService) {
-        this.priceService = priceService;
+        this.productService = productService;
         this.shoppingBasketRepository = shoppingBasketRepository;
 		this.stockService = stockService;
 	}
@@ -19,7 +19,7 @@ public class ShoppingBasketService {
     public void addItem(UserID userID, ProductID productID, int quantity) {
     	abortIfNotEnoughProductsInStock(productID, quantity);
         ShoppingBasket basket = shoppingBasketRepository.basketFor(userID);
-        BigDecimal productUnitPrice = priceService.priceFor(productID);
+        BigDecimal productUnitPrice = productService.priceFor(productID);
         basket.add(new ShoppingBasketItem(productID, quantity, productUnitPrice));
         shoppingBasketRepository.save(basket);
     }

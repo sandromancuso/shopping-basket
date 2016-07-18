@@ -28,7 +28,8 @@ public class ShoppingBasketServiceShould {
 
 
 	@Mock ShoppingBasketRepository shoppingBasketRepository;
-    @Mock PriceService priceService;
+    @Mock
+    ProductService productService;
 	@Mock StockService stockService;
 
     private ShoppingBasketService shoppingBasketService;
@@ -37,10 +38,10 @@ public class ShoppingBasketServiceShould {
     public void initialise() {
         USER_1_SHOPPING_BASKET = aShoppingBasket().ownedBy(USER_ID_1).build();
 		given(shoppingBasketRepository.basketFor(USER_ID_1)).willReturn(USER_1_SHOPPING_BASKET);
-        given(priceService.priceFor(PRODUCT_ID_1)).willReturn(PRODUCT_1_UNIT_PRICE);
+        given(productService.priceFor(PRODUCT_ID_1)).willReturn(PRODUCT_1_UNIT_PRICE);
 
         shoppingBasketService =
-                new ShoppingBasketService(priceService, shoppingBasketRepository, stockService);
+                new ShoppingBasketService(productService, shoppingBasketRepository, stockService);
     }
 
     @Test public void
