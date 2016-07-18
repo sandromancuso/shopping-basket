@@ -35,7 +35,7 @@ Products available (in-memory repository):
     }    
 ```    
 
-### Scenario 3 - Stock restriction
+### Scenario 2 - Stock restriction
 
 - If there are not enough items available in stock for purchase, throw exception
 
@@ -43,15 +43,19 @@ Products available (in-memory repository):
 if there were 10 items in stock, and one user adds 8 to her shopping cart, we 
 should have only 2 available for being purchase by another user.
 
+For these exercise, stock should be controlled with in-memory data (as 
+long as it can be replaced with a DB in the future without breaking 
+ anything)
 
-### Scenario 4 - Multi-buy discount
+
+### Scenario 3 - Multi-buy discount
 
 - Shopping cart should contain multi-buy discount: 
     - 10% discount if more than 3 books are in the cart
     - 20% discount if at least one book and and video are in the cart
 - In case both discounts on shopping basket apply, the biggest discount is selected.       
 
-## Scenario 5 - Payment
+## Scenario 4 - Payment
 
 - Order should be created, with an OrderId. 
 - User submits payment, providing user and payment details
@@ -72,7 +76,7 @@ should have only 2 available for being purchase by another user.
     }
 ```
 
-## Scenario 6 - Notify purchase system
+## Scenario 5 - Notify purchase system
 
 - Once items are sold (payment is made) if items in stock is below threshold, notify purchase component.
 
@@ -84,7 +88,7 @@ should have only 2 available for being purchase by another user.
     }
 ``` 
 
-## Scenario 7 - Send purchase confirmation email to user
+## Scenario 6 - Send purchase confirmation email to user
 
 - User should receive an email confirmation containing the order id, items bought, and price. (external)
 

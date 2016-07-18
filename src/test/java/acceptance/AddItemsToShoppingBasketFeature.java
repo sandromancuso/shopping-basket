@@ -38,7 +38,8 @@ public class AddItemsToShoppingBasketFeature {
     public void initialise() {
         ShoppingBasketRepository shoppingBasketRepository = new ShoppingBasketRepository(clock);
         PriceService priceService = new PriceService();
-        shoppingBasketService = new ShoppingBasketService(priceService, shoppingBasketRepository);
+	    StockService stockService = new StockService();
+	    shoppingBasketService = new ShoppingBasketService(priceService, shoppingBasketRepository, stockService);
     }
 
     @Test public void
