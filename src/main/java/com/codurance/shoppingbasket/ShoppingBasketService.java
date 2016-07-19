@@ -6,14 +6,11 @@ public class ShoppingBasketService {
 
     private ProductService productService;
     private ShoppingBasketRepository shoppingBasketRepository;
-	private StockService stockService;
 
 	public ShoppingBasketService(ProductService productService,
-                                 ShoppingBasketRepository shoppingBasketRepository,
-                                 StockService stockService) {
+	                             ShoppingBasketRepository shoppingBasketRepository) {
         this.productService = productService;
         this.shoppingBasketRepository = shoppingBasketRepository;
-		this.stockService = stockService;
 	}
 
     public void addItem(UserID userID, ProductID productID, int quantity) {
@@ -25,7 +22,7 @@ public class ShoppingBasketService {
     }
 
 	private void abortIfNotEnoughProductsInStock(ProductID productID, int quantity) {
-		if (!stockService.hasEnoughItemsInStock(productID, quantity)) {
+		if (!productService.hasEnoughItemsInStock(productID, quantity)) {
 			throw new NotEnoughItemsInStockException();
 		}
 	}

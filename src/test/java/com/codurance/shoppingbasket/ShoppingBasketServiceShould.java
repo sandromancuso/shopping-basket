@@ -28,9 +28,7 @@ public class ShoppingBasketServiceShould {
 
 
 	@Mock ShoppingBasketRepository shoppingBasketRepository;
-    @Mock
-    ProductService productService;
-	@Mock StockService stockService;
+    @Mock ProductService productService;
 
     private ShoppingBasketService shoppingBasketService;
 
@@ -41,12 +39,12 @@ public class ShoppingBasketServiceShould {
         given(productService.priceFor(PRODUCT_ID_1)).willReturn(PRODUCT_1_UNIT_PRICE);
 
         shoppingBasketService =
-                new ShoppingBasketService(productService, shoppingBasketRepository, stockService);
+                new ShoppingBasketService(productService, shoppingBasketRepository);
     }
 
     @Test public void
     add_new_item_to_shopping_basket() {
-	    given(stockService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
+	    given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
 
         shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
 
@@ -63,7 +61,7 @@ public class ShoppingBasketServiceShould {
 
     @Test(expected = NotEnoughItemsInStockException.class) public void
     throw_exception_when_there_are_not_enough_items_in_stock() {
-        given(stockService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(false);
+        given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(false);
 
 	    shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
     }

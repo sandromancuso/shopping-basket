@@ -28,4 +28,8 @@ public class ProductService {
     public BigDecimal priceFor(ProductID productId) {
         return prices.get(productId);
     }
+
+    public boolean hasEnoughItemsInStock(ProductID productID, int quantity) {
+	    throw new UnsupportedOperationException();
+    }
 }
