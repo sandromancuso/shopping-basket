@@ -39,19 +39,10 @@ Products available (in-memory repository):
 
 - If there are not enough items available in stock for purchase, throw exception
 
-- When items are added to shopping basket, items should be reserved, that means, 
-if there were 10 items in stock, and one user adds 8 to her shopping cart, we 
-should have only 2 available for being purchase by another user.
-
-For these exercise, stock should be controlled with in-memory data (as 
-long as it can be replaced with a DB in the future without breaking 
- anything)
-
-
 ### Scenario 3 - Multi-buy discount
 
 - Shopping cart should contain multi-buy discount: 
-    - 10% discount if more than 3 books are in the cart
+    - 10% discount if 3 or more books are in the cart
     - 20% discount if at least one book and and video are in the cart
 - In case both discounts on shopping basket apply, the biggest discount is selected.       
 
@@ -99,3 +90,13 @@ long as it can be replaced with a DB in the future without breaking
     
     }
 ```
+
+## Scenarion 7 - Item reservation
+
+- When items are added to shopping basket, items should be reserved, that means, 
+if there were 10 items in stock, and one user adds 8 to her shopping cart, we 
+should have only 2 available for being purchase by another user.
+
+For these exercise, stock should be controlled with in-memory data (as 
+long as it can be replaced with a DB in the future without breaking 
+ anything)

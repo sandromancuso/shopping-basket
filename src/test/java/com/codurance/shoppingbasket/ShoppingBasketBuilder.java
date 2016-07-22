@@ -10,6 +10,7 @@ public class ShoppingBasketBuilder {
     private LocalDate creationDate = LocalDate.now();
     private UserID userID = new UserID("SOME ID");
     private List<ShoppingBasketItem> items = new ArrayList<>();
+    private Discount discount = new NoDiscount();
 
     public static ShoppingBasketBuilder aShoppingBasket() {
         return new ShoppingBasketBuilder();
@@ -30,9 +31,15 @@ public class ShoppingBasketBuilder {
         return this;
     }
 
+	public ShoppingBasketBuilder with(Discount discount) {
+		this.discount = discount;
+		return this;
+	}
+
     public ShoppingBasket build() {
         ShoppingBasket shoppingBasket = new ShoppingBasket(userID, creationDate);
-        items.forEach(item -> shoppingBasket.add(item));
+        shoppingBasket.setDiscount(discount);
+        items.forEach(shoppingBasket::add);
         return shoppingBasket;
     }
 }

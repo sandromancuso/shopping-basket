@@ -29,8 +29,7 @@ public class AddItemsToShoppingBasketFeature {
     private static final BigDecimal UNIT_PRICE_FOR_BREAKING_BAD = BigDecimal.valueOf(7.0);
     private static final int QTY_5 = 5;
 
-    @Mock
-    Clock clock;
+    @Mock Clock clock;
 
     private ShoppingBasketService shoppingBasketService;
 
@@ -38,7 +37,8 @@ public class AddItemsToShoppingBasketFeature {
     public void initialise() {
         ShoppingBasketRepository shoppingBasketRepository = new ShoppingBasketRepository(clock);
         ProductService productService = new ProductService();
-	    shoppingBasketService = new ShoppingBasketService(productService, shoppingBasketRepository);
+	    DiscountCalculator discountCalculator = new DiscountCalculator();
+	    shoppingBasketService = new ShoppingBasketService(productService, shoppingBasketRepository, discountCalculator);
     }
 
     @Test public void

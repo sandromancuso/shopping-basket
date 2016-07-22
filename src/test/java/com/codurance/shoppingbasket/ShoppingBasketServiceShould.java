@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.math.BigDecimal;
 
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -20,15 +21,17 @@ public class ShoppingBasketServiceShould {
     private static final ProductID PRODUCT_ID_1 = new ProductID("10002");
     private static final BigDecimal PRODUCT_1_UNIT_PRICE = BigDecimal.TEN;
     private static final int QTY_2 = 2;
-
+	private static final Discount NO_DISCOUNT = new NoDiscount();
 
     private static final UserID USER_ID_1 = new UserID("1234");
+	private static final Discount TWENTY_PERCENT_DISCOUNT = new TwentyPercentDiscount(20);
 
-    private ShoppingBasket USER_1_SHOPPING_BASKET;
+	private ShoppingBasket USER_1_SHOPPING_BASKET;
 
 
 	@Mock ShoppingBasketRepository shoppingBasketRepository;
     @Mock ProductService productService;
+	@Mock DiscountCalculator discountCalculator;
 
     private ShoppingBasketService shoppingBasketService;
 
@@ -39,17 +42,23 @@ public class ShoppingBasketServiceShould {
         given(productService.priceFor(PRODUCT_ID_1)).willReturn(PRODUCT_1_UNIT_PRICE);
 
         shoppingBasketService =
-                new ShoppingBasketService(productService, shoppingBasketRepository);
+                new ShoppingBasketService(productService, shoppingBasketRepository, discountCalculator);
     }
 
     @Test public void
     add_new_item_to_shopping_basket() {
+	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE);
+	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
+			    .willReturn(NO_DISCOUNT);
 	    given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
 
         shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
 
         verify(shoppingBasketRepository).save(
-                aShoppingBasket().ownedBy(USER_ID_1).withItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE).build());
+                aShoppingBasket().ownedBy(USER_ID_1)
+		                         .withItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE)
+		                         .with(NO_DISCOUNT)
+		                         .build());
     }
 
     @Test public void
@@ -64,6 +73,22 @@ public class ShoppingBasketServiceShould {
         given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(false);
 
 	    shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
+    }
+
+    @Test public void
+    set_the_discount_after_adding_a_new_item() {
+        given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
+	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE);
+	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
+			    .willReturn(TWENTY_PERCENT_DISCOUNT);
+
+    	shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
+
+	    verify(shoppingBasketRepository).save(
+			    aShoppingBasket().ownedBy(USER_ID_1)
+					             .withItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE)
+					             .with(TWENTY_PERCENT_DISCOUNT)
+					             .build());
     }
     
 }
