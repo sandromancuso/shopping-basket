@@ -1,18 +1,25 @@
 package com.codurance.shoppingbasket;
 
+import java.util.List;
+
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
-class TwentyPercentDiscount implements Discount {
+class AtLeastOneBookAndOneVideoDiscount implements Discount {
 	private int percentage;
 
-	TwentyPercentDiscount(int percentage) {
+	AtLeastOneBookAndOneVideoDiscount(int percentage) {
 		this.percentage = percentage;
 	}
 
 	@Override
 	public int percentage() {
 		return percentage;
+	}
+
+	@Override
+	public boolean isApplicableFor(List<ShoppingBasketItem> shoppingBasketItems) {
+		return false;
 	}
 
 	@Override

@@ -24,7 +24,7 @@ public class ShoppingBasketServiceShould {
 	private static final Discount NO_DISCOUNT = new NoDiscount();
 
     private static final UserID USER_ID_1 = new UserID("1234");
-	private static final Discount TWENTY_PERCENT_DISCOUNT = new TwentyPercentDiscount(20);
+	private static final Discount TWENTY_PERCENT_DISCOUNT = new AtLeastOneBookAndOneVideoDiscount(20);
 
 	private ShoppingBasket USER_1_SHOPPING_BASKET;
 

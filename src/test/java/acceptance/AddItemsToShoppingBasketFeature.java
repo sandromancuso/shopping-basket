@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -37,7 +38,7 @@ public class AddItemsToShoppingBasketFeature {
     public void initialise() {
         ShoppingBasketRepository shoppingBasketRepository = new ShoppingBasketRepository(clock);
         ProductService productService = new ProductService();
-	    DiscountCalculator discountCalculator = new DiscountCalculator();
+	    DiscountCalculator discountCalculator = new DiscountCalculator(singletonList(new NoDiscount()));
 	    shoppingBasketService = new ShoppingBasketService(productService, shoppingBasketRepository, discountCalculator);
     }
 
