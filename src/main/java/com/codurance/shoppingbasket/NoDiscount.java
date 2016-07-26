@@ -15,7 +15,7 @@ public class NoDiscount implements Discount {
 	}
 
 	@Override
-	public boolean isApplicableFor(List<ShoppingBasketItem> shoppingBasketItems) {
+	public boolean isApplicableTo(List<ShoppingBasketItem> shoppingBasketItems) {
 		return true;
 	}
 

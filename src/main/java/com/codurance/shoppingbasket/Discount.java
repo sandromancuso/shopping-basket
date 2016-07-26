@@ -6,5 +6,5 @@ public interface Discount {
 
 	int percentage();
 
-	boolean isApplicableFor(List<ShoppingBasketItem> shoppingBasketItems);
+	boolean isApplicableTo(List<ShoppingBasketItem> shoppingBasketItems);
 }

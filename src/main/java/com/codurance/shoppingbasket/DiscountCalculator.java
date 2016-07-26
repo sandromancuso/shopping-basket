@@ -14,7 +14,7 @@ public class DiscountCalculator {
 
 	Discount discountFor(List<ShoppingBasketItem> shoppingBasketItems) {
 		return discounts.stream()
-				.filter(discount -> discount.isApplicableFor(shoppingBasketItems))
+				.filter(discount -> discount.isApplicableTo(shoppingBasketItems))
 				.max((d1, d2) -> (d1.percentage() > d2.percentage()) ? +1 : -1)
 				.orElse(new NoDiscount());
 	}
