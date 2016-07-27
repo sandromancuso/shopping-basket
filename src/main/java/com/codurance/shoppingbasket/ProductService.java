@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.codurance.shoppingbasket.ProductBuilder.aBook;
+import static com.codurance.shoppingbasket.ProductBuilder.aVideo;
+
 public class ProductService {
 
     private static final BigDecimal TEN_POUNDS = BigDecimal.valueOf(10.0);
@@ -13,13 +16,13 @@ public class ProductService {
 
 	private static final int QTY_10 = 10;
 
-    public static final Product LOTR = new Product(new ProductID("10001"), TEN_POUNDS, QTY_10);
-	public static final Product THE_HOBBIT = new Product(new ProductID("10002"), FIVE_POUNDS, QTY_10);
-    public static final Product GAME_OF_THRONES = new Product(new ProductID("20001"), NINE_POUNDS, QTY_10);
-    public static final Product BREAKING_BAD = new Product(new ProductID("20110"), SEVEN_POUNDS, QTY_10);
+	static final Product LOTR = aBook().withId("10001").costing(TEN_POUNDS).withQuantity(QTY_10).build();
+	static final Product THE_HOBBIT = aBook().withId("10002").costing(FIVE_POUNDS).withQuantity(QTY_10).build();
+	static final Product GAME_OF_THRONES = aVideo().withId("20001").costing(NINE_POUNDS).withQuantity(QTY_10).build();
+	static final Product BREAKING_BAD = aVideo().withId("20110").costing(SEVEN_POUNDS).withQuantity(QTY_10).build();
 
 
-    private static Map<ProductID, Product> products = new HashMap<ProductID, Product>() {
+	private static Map<ProductID, Product> products = new HashMap<ProductID, Product>() {
         {
             put(LOTR.id(), LOTR);
             put(THE_HOBBIT.id(), THE_HOBBIT);
@@ -28,11 +31,11 @@ public class ProductService {
         }
     };
 
-    public BigDecimal priceFor(ProductID productId) {
+    BigDecimal priceFor(ProductID productId) {
         return products.get(productId).price();
     }
 
-    public boolean hasEnoughItemsInStock(ProductID productID, int quantity) {
+    boolean hasEnoughItemsInStock(ProductID productID, int quantity) {
 	    return products.get(productID).quantity() >= quantity;
     }
 }
