@@ -2,20 +2,23 @@ package com.codurance.shoppingbasket;
 
 import java.math.BigDecimal;
 
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+
 public class Product {
 
 	private final ProductID productID;
 	private ProductType productType;
-	private final BigDecimal price;
+	private final BigDecimal unitPrice;
 	private final int quantity;
 
 	public Product(ProductID productID,
 	               ProductType productType,
-	               BigDecimal price,
+	               BigDecimal unitPrice,
 	               int quantity) {
 		this.productID = productID;
 		this.productType = productType;
-		this.price = price;
+		this.unitPrice = unitPrice;
 		this.quantity = quantity;
 	}
 
@@ -23,11 +26,35 @@ public class Product {
 		return this.productID;
 	}
 
-	public BigDecimal price() {
-		return price;
-	}
-
 	public int quantity() {
 		return quantity;
+	}
+
+	public BigDecimal unitPrice() {
+		return unitPrice;
+	}
+
+	public ProductType productType() {
+		return productType;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return reflectionEquals(this, o);
+	}
+
+	@Override
+	public int hashCode() {
+		return reflectionHashCode(this);
+	}
+
+	@Override
+	public String toString() {
+		return "Product{" +
+				"productID=" + productID +
+				", productType=" + productType +
+				", unitPrice=" + unitPrice +
+				", quantity=" + quantity +
+				'}';
 	}
 }

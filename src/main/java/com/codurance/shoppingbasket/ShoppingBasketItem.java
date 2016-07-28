@@ -6,18 +6,16 @@ import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
 public class ShoppingBasketItem {
-    private final ProductID productID;
     private final int quantity;
-    private BigDecimal unitPrice;
+    private final Product product;
 
-    public ShoppingBasketItem(ProductID productID, int quantity, BigDecimal unitPrice) {
-        this.productID = productID;
+    public ShoppingBasketItem(Product product, int quantity) {
+        this.product = product;
         this.quantity = quantity;
-        this.unitPrice = unitPrice;
     }
 
     public BigDecimal totalPrice() {
-        return BigDecimal.valueOf(quantity * unitPrice.doubleValue());
+        return BigDecimal.valueOf(quantity * product.unitPrice().doubleValue());
     }
 
     @Override
@@ -33,9 +31,8 @@ public class ShoppingBasketItem {
     @Override
     public String toString() {
         return "ShoppingBasketItem{" +
-                "productID=" + productID +
+                "product=" + product +
                 ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
                 '}';
     }
 }

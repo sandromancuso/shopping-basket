@@ -19,8 +19,8 @@ public class ShoppingBasketService {
     public void addItem(UserID userID, ProductID productID, int quantity) {
     	abortIfNotEnoughProductsInStock(productID, quantity);
         ShoppingBasket basket = shoppingBasketRepository.basketFor(userID);
-        BigDecimal productUnitPrice = productService.priceFor(productID);
-        basket.add(new ShoppingBasketItem(productID, quantity, productUnitPrice));
+        Product product = productService.productFor(productID);
+        basket.add(new ShoppingBasketItem(product, quantity));
 	    basket.setDiscount(discountCalculator.discountFor(basket.items()));
         shoppingBasketRepository.save(basket);
     }

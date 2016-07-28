@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.math.BigDecimal;
-
+import static com.codurance.shoppingbasket.ProductBuilder.aBook;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static java.math.BigDecimal.TEN;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -18,8 +18,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ShoppingBasketServiceShould {
 
-    private static final ProductID PRODUCT_ID_1 = new ProductID("10002");
-    private static final BigDecimal PRODUCT_1_UNIT_PRICE = BigDecimal.TEN;
+	private static final ProductID THE_HOBBIT_ID = new ProductID("10002");
+	private static final Product THE_HOBBIT = aBook().withId("10002").costing(TEN).build();
     private static final int QTY_2 = 2;
 	private static final Discount NO_DISCOUNT = new NoDiscount();
 
@@ -39,7 +39,7 @@ public class ShoppingBasketServiceShould {
     public void initialise() {
         USER_1_SHOPPING_BASKET = aShoppingBasket().ownedBy(USER_ID_1).build();
 		given(shoppingBasketRepository.basketFor(USER_ID_1)).willReturn(USER_1_SHOPPING_BASKET);
-        given(productService.priceFor(PRODUCT_ID_1)).willReturn(PRODUCT_1_UNIT_PRICE);
+        given(productService.productFor(THE_HOBBIT_ID)).willReturn(THE_HOBBIT);
 
         shoppingBasketService =
                 new ShoppingBasketService(productService, shoppingBasketRepository, discountCalculator);
@@ -47,16 +47,16 @@ public class ShoppingBasketServiceShould {
 
     @Test public void
     add_new_item_to_shopping_basket() {
-	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE);
+	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(THE_HOBBIT, QTY_2);
 	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
 			    .willReturn(NO_DISCOUNT);
-	    given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
+	    given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
 
-        shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
+        shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
 
         verify(shoppingBasketRepository).save(
                 aShoppingBasket().ownedBy(USER_ID_1)
-		                         .withItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE)
+		                         .withItem(THE_HOBBIT, QTY_2)
 		                         .with(NO_DISCOUNT)
 		                         .build());
     }
@@ -70,23 +70,23 @@ public class ShoppingBasketServiceShould {
 
     @Test(expected = NotEnoughItemsInStockException.class) public void
     throw_exception_when_there_are_not_enough_items_in_stock() {
-        given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(false);
+        given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(false);
 
-	    shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
+	    shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
     }
 
     @Test public void
     set_the_discount_after_adding_a_new_item() {
-        given(productService.hasEnoughItemsInStock(PRODUCT_ID_1, QTY_2)).willReturn(true);
-	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE);
+        given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
+	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(THE_HOBBIT, QTY_2);
 	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
 			    .willReturn(TWENTY_PERCENT_DISCOUNT);
 
-    	shoppingBasketService.addItem(USER_ID_1, PRODUCT_ID_1, QTY_2);
+    	shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
 
 	    verify(shoppingBasketRepository).save(
 			    aShoppingBasket().ownedBy(USER_ID_1)
-					             .withItem(PRODUCT_ID_1, QTY_2, PRODUCT_1_UNIT_PRICE)
+					             .withItem(THE_HOBBIT, QTY_2)
 					             .with(TWENTY_PERCENT_DISCOUNT)
 					             .build());
     }

@@ -16,10 +16,10 @@ public class ProductService {
 
 	private static final int QTY_10 = 10;
 
-	static final Product LOTR = aBook().withId("10001").costing(TEN_POUNDS).withQuantity(QTY_10).build();
-	static final Product THE_HOBBIT = aBook().withId("10002").costing(FIVE_POUNDS).withQuantity(QTY_10).build();
-	static final Product GAME_OF_THRONES = aVideo().withId("20001").costing(NINE_POUNDS).withQuantity(QTY_10).build();
-	static final Product BREAKING_BAD = aVideo().withId("20110").costing(SEVEN_POUNDS).withQuantity(QTY_10).build();
+	public static final Product LOTR = aBook().withId("10001").costing(TEN_POUNDS).withQuantity(QTY_10).build();
+	public static final Product THE_HOBBIT = aBook().withId("10002").costing(FIVE_POUNDS).withQuantity(QTY_10).build();
+	public static final Product GAME_OF_THRONES = aVideo().withId("20001").costing(NINE_POUNDS).withQuantity(QTY_10).build();
+	public static final Product BREAKING_BAD = aVideo().withId("20110").costing(SEVEN_POUNDS).withQuantity(QTY_10).build();
 
 
 	private static Map<ProductID, Product> products = new HashMap<ProductID, Product>() {
@@ -31,9 +31,9 @@ public class ProductService {
         }
     };
 
-    BigDecimal priceFor(ProductID productId) {
-        return products.get(productId).price();
-    }
+	Product productFor(ProductID productID) {
+		return products.get(productID);
+	}
 
     boolean hasEnoughItemsInStock(ProductID productID, int quantity) {
 	    return products.get(productID).quantity() >= quantity;

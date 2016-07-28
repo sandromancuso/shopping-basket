@@ -6,10 +6,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static java.math.BigDecimal.TEN;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -19,9 +19,8 @@ public class ShoppingBasketRepositoryShould {
 
     private static final UserID USER_ID = new UserID("1234");
     private static final LocalDate CURRENT_DATE = LocalDate.now();
-    private static final ProductID PRODUCT_ID = new ProductID("10001");
     private static final int QTY_2 = 2;
-    private static final BigDecimal PRODUCT_UNIT_PRICE = BigDecimal.TEN;
+    private static final Product PRODUCT = ProductBuilder.aBook().withId("10001").costing(TEN).build();
 
     @Mock Clock clock;
 
@@ -48,7 +47,7 @@ public class ShoppingBasketRepositoryShould {
         ShoppingBasket userBasket = aShoppingBasket()
                                             .createdOn(CURRENT_DATE)
                                             .ownedBy(USER_ID)
-                                            .withItem(PRODUCT_ID, QTY_2, PRODUCT_UNIT_PRICE)
+                                            .withItem(PRODUCT, QTY_2)
                                             .build();
         shoppingBasketRepository.save(userBasket);
 
