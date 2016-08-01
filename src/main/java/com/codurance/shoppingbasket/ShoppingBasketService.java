@@ -1,7 +1,5 @@
 package com.codurance.shoppingbasket;
 
-import java.math.BigDecimal;
-
 public class ShoppingBasketService {
 
     private ProductService productService;
@@ -18,12 +16,15 @@ public class ShoppingBasketService {
 
     public void addItem(UserID userID, ProductID productID, int quantity) {
     	abortIfNotEnoughProductsInStock(productID, quantity);
-        ShoppingBasket basket = shoppingBasketRepository.basketFor(userID);
-        Product product = productService.productFor(productID);
-        basket.add(new ShoppingBasketItem(product, quantity));
-	    basket.setDiscount(discountCalculator.discountFor(basket.items()));
-        shoppingBasketRepository.save(basket);
+	    addProductToBasket(productID, quantity, basketFor(userID));
     }
+
+	private void addProductToBasket(ProductID productID, int quantity, ShoppingBasket basket) {
+		Product product = productService.productFor(productID);
+		basket.add(new ShoppingBasketItem(product, quantity));
+		basket.setDiscount(discountCalculator.discountFor(basket.items()));
+		shoppingBasketRepository.save(basket);
+	}
 
 	public ShoppingBasket basketFor(UserID userID) {
 		return shoppingBasketRepository.basketFor(userID);

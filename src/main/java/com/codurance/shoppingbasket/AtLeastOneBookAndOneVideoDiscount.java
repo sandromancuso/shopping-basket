@@ -2,6 +2,8 @@ package com.codurance.shoppingbasket;
 
 import java.util.List;
 
+import static com.codurance.shoppingbasket.ProductType.BOOK;
+import static com.codurance.shoppingbasket.ProductType.VIDEO;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
@@ -20,6 +22,10 @@ class AtLeastOneBookAndOneVideoDiscount implements Discount {
 	@Override
 	public boolean isApplicableTo(List<ShoppingBasketItem> shoppingBasketItems) {
 		return false;
+	}
+
+	public boolean isAppplicableTo(ShoppingBasket basket) {
+		return basket.contains(BOOK) && basket.contains(VIDEO);
 	}
 
 	@Override

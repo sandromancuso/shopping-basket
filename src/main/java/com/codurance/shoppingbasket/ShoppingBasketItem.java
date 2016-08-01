@@ -18,6 +18,10 @@ public class ShoppingBasketItem {
         return BigDecimal.valueOf(quantity * product.unitPrice().doubleValue());
     }
 
+    public ProductType productType() {
+        return this.product.productType();
+    }
+
     @Override
     public boolean equals(Object o) {
         return reflectionEquals(this, o);

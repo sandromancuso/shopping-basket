@@ -43,6 +43,11 @@ public class ShoppingBasket {
 		return unmodifiableList(items);
 	}
 
+	public boolean contains(ProductType productType) {
+		return items.stream()
+					.anyMatch(i -> i.productType() == productType);
+	}
+
     @Override
     public boolean equals(Object o) {
         return reflectionEquals(this, o);
