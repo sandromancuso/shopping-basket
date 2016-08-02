@@ -22,7 +22,7 @@ public class ShoppingBasketService {
 	private void addProductToBasket(ProductID productID, int quantity, ShoppingBasket basket) {
 		Product product = productService.productFor(productID);
 		basket.add(new ShoppingBasketItem(product, quantity));
-		basket.setDiscount(discountCalculator.discountFor(basket.items()));
+		basket.setDiscount(discountCalculator.discountFor(basket));
 		shoppingBasketRepository.save(basket);
 	}
 

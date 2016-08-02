@@ -24,4 +24,11 @@ public class UserID {
     public int hashCode() {
         return reflectionHashCode(this);
     }
+
+    @Override
+    public String toString() {
+        return "UserID{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }

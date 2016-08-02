@@ -30,7 +30,7 @@ public class AtLeastOneBookAndOneVideoDiscountShould {
 										.withItem(aVideo().build(), QTY_2)
 										.build();
 
-	    assertThat(discount.isAppplicableTo(basket), is(false));
+	    assertThat(discount.isApplicableTo(basket), is(false));
 	}
 
 	@Test public void
@@ -39,7 +39,7 @@ public class AtLeastOneBookAndOneVideoDiscountShould {
 										.withItem(aBook().build(), QTY_2)
 										.build();
 
-	    assertThat(discount.isAppplicableTo(basket), is(false));
+	    assertThat(discount.isApplicableTo(basket), is(false));
 	}
 
 }

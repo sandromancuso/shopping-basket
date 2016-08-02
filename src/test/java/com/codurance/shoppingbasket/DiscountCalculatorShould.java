@@ -2,8 +2,6 @@ package com.codurance.shoppingbasket;
 
 import org.junit.Test;
 
-import java.util.List;
-
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
@@ -17,7 +15,7 @@ public class DiscountCalculatorShould {
 
 	@Test public void
 	return_the_highest_discount_for_shopping_basket() {
-		List<ShoppingBasketItem> shoppingBasket = aShoppingBasket().build().items();
+		ShoppingBasket shoppingBasket = aShoppingBasket().build();
 		DiscountCalculator discountCalculator = new DiscountCalculator(
 				asList(TEN_PERCENT_DISCOUNT, TWENTY_PERCENT_DISCOUNT, FIVE_PERCENT_DISCOUNT));
 
@@ -34,7 +32,7 @@ public class DiscountCalculatorShould {
 			}
 
 			@Override
-			public boolean isApplicableTo(List<ShoppingBasketItem> shoppingBasketItems) {
+			public boolean isApplicableTo(ShoppingBasket shoppingBasket) {
 				return true;
 			}
 		};

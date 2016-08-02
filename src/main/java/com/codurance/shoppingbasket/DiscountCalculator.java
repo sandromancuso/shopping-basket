@@ -12,9 +12,9 @@ public class DiscountCalculator {
 		this.discounts = discounts;
 	}
 
-	Discount discountFor(List<ShoppingBasketItem> shoppingBasketItems) {
+	Discount discountFor(ShoppingBasket shoppingBasket) {
 		return discounts.stream()
-				.filter(discount -> discount.isApplicableTo(shoppingBasketItems))
+				.filter(discount -> discount.isApplicableTo(shoppingBasket))
 				.max((d1, d2) -> (d1.percentage() > d2.percentage()) ? +1 : -1)
 				.orElse(new NoDiscount());
 	}

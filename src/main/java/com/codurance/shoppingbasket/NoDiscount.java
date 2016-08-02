@@ -1,7 +1,5 @@
 package com.codurance.shoppingbasket;
 
-import java.util.List;
-
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
@@ -15,7 +13,7 @@ public class NoDiscount implements Discount {
 	}
 
 	@Override
-	public boolean isApplicableTo(List<ShoppingBasketItem> shoppingBasketItems) {
+	public boolean isApplicableTo(ShoppingBasket basket) {
 		return true;
 	}
 

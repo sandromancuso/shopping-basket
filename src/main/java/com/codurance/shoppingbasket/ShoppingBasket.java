@@ -58,12 +58,13 @@ public class ShoppingBasket {
         return reflectionHashCode(this);
     }
 
-    @Override
-    public String toString() {
-        return "ShoppingBasket{" +
-                "creationDate=" + creationDate +
-                ", userID=" + userID +
-                ", items=" + items +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "ShoppingBasket{" +
+				"userID=" + userID +
+				", creationDate=" + creationDate +
+				", items=" + items +
+				", discount=" + discount +
+				'}';
+	}
 }

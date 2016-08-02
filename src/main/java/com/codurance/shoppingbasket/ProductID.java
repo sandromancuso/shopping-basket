@@ -20,7 +20,10 @@ public class ProductID {
         return reflectionHashCode(this);
     }
 
-    public String value() {
-        return id;
+    @Override
+    public String toString() {
+        return "ProductID{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

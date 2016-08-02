@@ -9,7 +9,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import static com.codurance.shoppingbasket.ProductBuilder.aBook;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.math.BigDecimal.TEN;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -47,9 +46,8 @@ public class ShoppingBasketServiceShould {
 
     @Test public void
     add_new_item_to_shopping_basket() {
-	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(THE_HOBBIT, QTY_2);
-	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
-			    .willReturn(NO_DISCOUNT);
+	    ShoppingBasket shoppingBasket = aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
+	    given(discountCalculator.discountFor(shoppingBasket)).willReturn(NO_DISCOUNT);
 	    given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
 
         shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
@@ -78,9 +76,8 @@ public class ShoppingBasketServiceShould {
     @Test public void
     set_the_discount_after_adding_a_new_item() {
         given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
-	    ShoppingBasketItem shoppingBasketItem = new ShoppingBasketItem(THE_HOBBIT, QTY_2);
-	    given(discountCalculator.discountFor(singletonList(shoppingBasketItem)))
-			    .willReturn(TWENTY_PERCENT_DISCOUNT);
+	    ShoppingBasket shoppingBasket = aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
+	    given(discountCalculator.discountFor(shoppingBasket)).willReturn(TWENTY_PERCENT_DISCOUNT);
 
     	shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
 
