@@ -1,5 +1,7 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.discount.DiscountCalculator;
+
 public class ShoppingBasketService {
 
     private ProductService productService;

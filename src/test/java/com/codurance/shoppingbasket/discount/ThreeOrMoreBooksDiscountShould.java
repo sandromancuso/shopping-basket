@@ -1,5 +1,8 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.discount;
 
+import com.codurance.shoppingbasket.ShoppingBasket;
+import com.codurance.shoppingbasket.discount.Discount;
+import com.codurance.shoppingbasket.discount.ThreeOrMoreBooksDiscount;
 import org.junit.Before;
 import org.junit.Test;
 

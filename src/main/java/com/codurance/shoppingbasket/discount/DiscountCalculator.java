@@ -1,4 +1,8 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.discount;
+
+import com.codurance.shoppingbasket.ShoppingBasket;
+import com.codurance.shoppingbasket.discount.Discount;
+import com.codurance.shoppingbasket.discount.NoDiscount;
 
 import java.util.List;
 
@@ -12,7 +16,7 @@ public class DiscountCalculator {
 		this.discounts = discounts;
 	}
 
-	Discount discountFor(ShoppingBasket shoppingBasket) {
+	public Discount discountFor(ShoppingBasket shoppingBasket) {
 		return discounts.stream()
 				.filter(discount -> discount.isApplicableTo(shoppingBasket))
 				.max((d1, d2) -> (d1.percentage() > d2.percentage()) ? +1 : -1)

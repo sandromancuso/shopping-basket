@@ -1,4 +1,6 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.discount;
+
+import com.codurance.shoppingbasket.ShoppingBasket;
 
 public interface Discount {
 

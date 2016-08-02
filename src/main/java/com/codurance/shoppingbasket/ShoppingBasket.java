@@ -1,5 +1,8 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.discount.Discount;
+import com.codurance.shoppingbasket.discount.NoDiscount;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;

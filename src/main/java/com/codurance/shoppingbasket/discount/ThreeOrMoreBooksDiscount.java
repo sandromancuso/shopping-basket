@@ -1,4 +1,6 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.discount;
+
+import com.codurance.shoppingbasket.ShoppingBasket;
 
 import static com.codurance.shoppingbasket.ProductType.BOOK;
 

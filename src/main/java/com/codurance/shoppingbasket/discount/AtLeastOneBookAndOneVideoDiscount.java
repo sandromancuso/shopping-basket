@@ -1,14 +1,16 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.discount;
+
+import com.codurance.shoppingbasket.ShoppingBasket;
 
 import static com.codurance.shoppingbasket.ProductType.BOOK;
 import static com.codurance.shoppingbasket.ProductType.VIDEO;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
-class AtLeastOneBookAndOneVideoDiscount implements Discount {
+public class AtLeastOneBookAndOneVideoDiscount implements Discount {
 	private int percentage;
 
-	AtLeastOneBookAndOneVideoDiscount(int percentage) {
+	public AtLeastOneBookAndOneVideoDiscount(int percentage) {
 		this.percentage = percentage;
 	}
 

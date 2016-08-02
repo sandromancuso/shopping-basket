@@ -1,5 +1,9 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.discount.AtLeastOneBookAndOneVideoDiscount;
+import com.codurance.shoppingbasket.discount.Discount;
+import com.codurance.shoppingbasket.discount.DiscountCalculator;
+import com.codurance.shoppingbasket.discount.NoDiscount;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +34,8 @@ public class ShoppingBasketServiceShould {
 
 	@Mock ShoppingBasketRepository shoppingBasketRepository;
     @Mock ProductService productService;
-	@Mock DiscountCalculator discountCalculator;
+	@Mock
+	DiscountCalculator discountCalculator;
 
     private ShoppingBasketService shoppingBasketService;
 

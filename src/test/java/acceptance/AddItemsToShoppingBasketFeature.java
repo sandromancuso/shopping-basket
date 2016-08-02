@@ -1,6 +1,8 @@
 package acceptance;
 
 import com.codurance.shoppingbasket.*;
+import com.codurance.shoppingbasket.discount.DiscountCalculator;
+import com.codurance.shoppingbasket.discount.NoDiscount;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -46,6 +46,10 @@ Products available (in-memory repository):
     - 20% discount if at least one book and one video are in the cart
 - In case both discounts on shopping basket apply, the biggest discount is selected.       
 
+
+--------
+
+
 ## Scenario 4 - Payment
 
 - Order should be created, with an OrderId. 
@@ -54,9 +58,9 @@ Products available (in-memory repository):
 - If payment is rejected, exception is thrown
 
 ```
-    public class PaymentService {
+    public class ShoppingBasketService {
    
-        public void makePayment(UserId userId, ShoppingCartId shoppingCartId, PaymentDetails paymentDetails) { }        
+        public void makePayment(UserId userId, PaymentDetails paymentDetails) { }        
    
     }
     
