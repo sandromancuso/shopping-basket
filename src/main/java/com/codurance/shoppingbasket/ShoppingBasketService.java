@@ -19,15 +19,15 @@ public class ShoppingBasketService {
 	    addProductToBasket(productID, quantity, basketFor(userID));
     }
 
+	public ShoppingBasket basketFor(UserID userID) {
+		return shoppingBasketRepository.basketFor(userID);
+	}
+
 	private void addProductToBasket(ProductID productID, int quantity, ShoppingBasket basket) {
 		Product product = productService.productFor(productID);
 		basket.add(new ShoppingBasketItem(product, quantity));
 		basket.setDiscount(discountCalculator.discountFor(basket));
 		shoppingBasketRepository.save(basket);
-	}
-
-	public ShoppingBasket basketFor(UserID userID) {
-		return shoppingBasketRepository.basketFor(userID);
 	}
 
 	private void abortIfNotEnoughProductsInStock(ProductID productID, int quantity) {
