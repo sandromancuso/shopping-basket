@@ -21,7 +21,7 @@ public class ShoppingBasketService {
 	}
 
     public void addItem(UserID userID, ProductID productID, int quantity) {
-    	abortIfNotEnoughProductsInStock(productID, quantity);
+    	abortIfNotEnoughItemsInStock(productID, quantity);
 	    addProductToBasket(productID, quantity, basketFor(userID));
     }
 
@@ -36,7 +36,7 @@ public class ShoppingBasketService {
 		shoppingBasketRepository.save(basket);
 	}
 
-	private void abortIfNotEnoughProductsInStock(ProductID productID, int quantity) {
+	private void abortIfNotEnoughItemsInStock(ProductID productID, int quantity) {
 		if (!productService.hasEnoughItemsInStock(productID, quantity)) {
 			throw new NotEnoughItemsInStockException();
 		}
