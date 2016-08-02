@@ -22,6 +22,10 @@ public class ShoppingBasketItem {
         return this.product.productType();
     }
 
+    public int quantity() {
+        return quantity;
+    }
+
     @Override
     public boolean equals(Object o) {
         return reflectionEquals(this, o);

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.math.BigDecimal.valueOf;
-import static java.util.Collections.unmodifiableList;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
@@ -39,13 +38,17 @@ public class ShoppingBasket {
 		this.discount = discount;
 	}
 
-	List<ShoppingBasketItem> items() {
-		return unmodifiableList(items);
-	}
-
 	public boolean contains(ProductType productType) {
 		return items.stream()
 					.anyMatch(i -> i.productType() == productType);
+	}
+
+	public int numberOf(ProductType productType) {
+		return items.stream()
+					.filter(i -> i.productType() == productType)
+					.map(i -> i.quantity())
+					.reduce((quantity, acc) -> acc + quantity)
+					.orElse(0);
 	}
 
     @Override
