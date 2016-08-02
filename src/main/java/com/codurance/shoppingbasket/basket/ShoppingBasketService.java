@@ -1,6 +1,7 @@
 package com.codurance.shoppingbasket.basket;
 
 import com.codurance.shoppingbasket.UserID;
+import com.codurance.shoppingbasket.discount.Discount;
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
 import com.codurance.shoppingbasket.product.Product;
 import com.codurance.shoppingbasket.product.ProductID;
@@ -42,4 +43,8 @@ public class ShoppingBasketService {
 		}
 	}
 
+	public Discount basketDiscount(UserID userID) {
+		ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(userID);
+		return discountCalculator.discountFor(shoppingBasket);
+	}
 }
