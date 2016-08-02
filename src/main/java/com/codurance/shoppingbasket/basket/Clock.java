@@ -1,4 +1,4 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
 
 import java.time.LocalDate;
 

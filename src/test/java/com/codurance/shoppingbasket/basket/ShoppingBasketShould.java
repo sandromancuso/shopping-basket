@@ -1,4 +1,4 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
 
 import com.codurance.shoppingbasket.product.Product;
 import org.junit.Test;
@@ -9,7 +9,6 @@ import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
 import static com.codurance.shoppingbasket.product.ProductBuilder.aVideo;
 import static com.codurance.shoppingbasket.product.ProductType.BOOK;
 import static com.codurance.shoppingbasket.product.ProductType.VIDEO;
-import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -27,12 +26,12 @@ public class ShoppingBasketShould {
 
     @Test public void
     have_total_cost_of_zero_when_empty() {
-        assertThat(aShoppingBasket().build().total(), is(ZERO));
+        assertThat(ShoppingBasketBuilder.aShoppingBasket().build().total(), is(ZERO));
     }
 
     @Test public void
     return_the_total_cost_for_a_basket_containing_items() {
-        ShoppingBasket shoppingBasket = aShoppingBasket()
+        ShoppingBasket shoppingBasket = ShoppingBasketBuilder.aShoppingBasket()
                                             .withItem(PRODUCT_1, QTY_2)
                                             .withItem(PRODUCT_2, QTY_5)
                                             .build();
@@ -44,7 +43,7 @@ public class ShoppingBasketShould {
 
     @Test public void
     return_the_number_of_products_of_one_type() {
-        ShoppingBasket basket = aShoppingBasket()
+        ShoppingBasket basket = ShoppingBasketBuilder.aShoppingBasket()
                                     .withItem(aBook().build(), QTY_2)
                                     .withItem(aVideo().build(), QTY_1)
                                     .build();
@@ -55,7 +54,7 @@ public class ShoppingBasketShould {
 
     @Test public void
     return_the_number_of_products_of_same_type_when_added_separately() {
-        ShoppingBasket basket = aShoppingBasket()
+        ShoppingBasket basket = ShoppingBasketBuilder.aShoppingBasket()
                                     .withItem(aBook().build(), QTY_2)
                                     .withItem(aBook().build(), QTY_5)
                                     .build();

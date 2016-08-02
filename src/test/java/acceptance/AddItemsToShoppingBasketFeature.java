@@ -1,6 +1,10 @@
 package acceptance;
 
 import com.codurance.shoppingbasket.*;
+import com.codurance.shoppingbasket.basket.Clock;
+import com.codurance.shoppingbasket.basket.ShoppingBasket;
+import com.codurance.shoppingbasket.basket.ShoppingBasketRepository;
+import com.codurance.shoppingbasket.basket.ShoppingBasketService;
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
 import com.codurance.shoppingbasket.discount.NoDiscount;
 import com.codurance.shoppingbasket.product.ProductService;
@@ -15,7 +19,7 @@ import java.time.LocalDate;
 
 import static com.codurance.shoppingbasket.product.ProductService.BREAKING_BAD;
 import static com.codurance.shoppingbasket.product.ProductService.THE_HOBBIT;
-import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static com.codurance.shoppingbasket.basket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -30,7 +34,8 @@ public class AddItemsToShoppingBasketFeature {
     private static final int QTY_2 = 2;
     private static final int QTY_5 = 5;
 
-    @Mock Clock clock;
+    @Mock
+    Clock clock;
 
     private ShoppingBasketService shoppingBasketService;
 

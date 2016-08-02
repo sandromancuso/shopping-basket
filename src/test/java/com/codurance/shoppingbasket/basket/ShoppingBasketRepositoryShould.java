@@ -1,7 +1,9 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
 
+import com.codurance.shoppingbasket.UserID;
 import com.codurance.shoppingbasket.product.Product;
 import com.codurance.shoppingbasket.product.ProductBuilder;
+import org.hamcrest.core.Is;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalDate;
 
-import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.math.BigDecimal.TEN;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -24,7 +25,8 @@ public class ShoppingBasketRepositoryShould {
     private static final int QTY_2 = 2;
     private static final Product PRODUCT = ProductBuilder.aBook().withId("10001").costing(TEN).build();
 
-    @Mock Clock clock;
+    @Mock
+    Clock clock;
 
     private ShoppingBasketRepository shoppingBasketRepository;
 
@@ -38,7 +40,7 @@ public class ShoppingBasketRepositoryShould {
     create_and_return_a_new_shopping_basket_for_a_user_when_she_does_not_have_one() {
         ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(USER_ID);
 
-        assertThat(shoppingBasket, is(aShoppingBasket()
+        assertThat(shoppingBasket, Is.is(ShoppingBasketBuilder.aShoppingBasket()
                                             .createdOn(CURRENT_DATE)
                                             .ownedBy(USER_ID)
                                             .build()));
@@ -46,7 +48,7 @@ public class ShoppingBasketRepositoryShould {
 
     @Test public void
     save_user_basket() {
-        ShoppingBasket userBasket = aShoppingBasket()
+        ShoppingBasket userBasket = ShoppingBasketBuilder.aShoppingBasket()
                                             .createdOn(CURRENT_DATE)
                                             .ownedBy(USER_ID)
                                             .withItem(PRODUCT, QTY_2)

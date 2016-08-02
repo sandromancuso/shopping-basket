@@ -1,5 +1,6 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
 
+import com.codurance.shoppingbasket.UserID;
 import com.codurance.shoppingbasket.discount.AtLeastOneBookAndOneVideoDiscount;
 import com.codurance.shoppingbasket.discount.Discount;
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
@@ -14,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
-import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.math.BigDecimal.TEN;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -35,7 +35,8 @@ public class ShoppingBasketServiceShould {
 	private ShoppingBasket USER_1_SHOPPING_BASKET;
 
 
-	@Mock ShoppingBasketRepository shoppingBasketRepository;
+	@Mock
+	ShoppingBasketRepository shoppingBasketRepository;
     @Mock
     ProductService productService;
 	@Mock
@@ -45,7 +46,7 @@ public class ShoppingBasketServiceShould {
 
 	@Before
     public void initialise() {
-        USER_1_SHOPPING_BASKET = aShoppingBasket().ownedBy(USER_ID_1).build();
+        USER_1_SHOPPING_BASKET = ShoppingBasketBuilder.aShoppingBasket().ownedBy(USER_ID_1).build();
 		given(shoppingBasketRepository.basketFor(USER_ID_1)).willReturn(USER_1_SHOPPING_BASKET);
         given(productService.productFor(THE_HOBBIT_ID)).willReturn(THE_HOBBIT);
 
@@ -55,14 +56,14 @@ public class ShoppingBasketServiceShould {
 
     @Test public void
     add_new_item_to_shopping_basket() {
-	    ShoppingBasket shoppingBasket = aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
+	    ShoppingBasket shoppingBasket = ShoppingBasketBuilder.aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
 	    given(discountCalculator.discountFor(shoppingBasket)).willReturn(NO_DISCOUNT);
 	    given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
 
         shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
 
         verify(shoppingBasketRepository).save(
-                aShoppingBasket().ownedBy(USER_ID_1)
+                ShoppingBasketBuilder.aShoppingBasket().ownedBy(USER_ID_1)
 		                         .withItem(THE_HOBBIT, QTY_2)
 		                         .with(NO_DISCOUNT)
 		                         .build());
@@ -85,13 +86,13 @@ public class ShoppingBasketServiceShould {
     @Test public void
     set_the_discount_after_adding_a_new_item() {
         given(productService.hasEnoughItemsInStock(THE_HOBBIT_ID, QTY_2)).willReturn(true);
-	    ShoppingBasket shoppingBasket = aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
+	    ShoppingBasket shoppingBasket = ShoppingBasketBuilder.aShoppingBasket().ownedBy(USER_ID_1).withItem(THE_HOBBIT, QTY_2).build();
 	    given(discountCalculator.discountFor(shoppingBasket)).willReturn(TWENTY_PERCENT_DISCOUNT);
 
     	shoppingBasketService.addItem(USER_ID_1, THE_HOBBIT_ID, QTY_2);
 
 	    verify(shoppingBasketRepository).save(
-			    aShoppingBasket().ownedBy(USER_ID_1)
+			    ShoppingBasketBuilder.aShoppingBasket().ownedBy(USER_ID_1)
 					             .withItem(THE_HOBBIT, QTY_2)
 					             .with(TWENTY_PERCENT_DISCOUNT)
 					             .build());

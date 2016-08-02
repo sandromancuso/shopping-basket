@@ -1,4 +1,6 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
+
+import com.codurance.shoppingbasket.UserID;
 
 import java.util.HashMap;
 import java.util.Map;

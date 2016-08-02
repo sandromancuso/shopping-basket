@@ -1,6 +1,6 @@
 package com.codurance.shoppingbasket.discount;
 
-import com.codurance.shoppingbasket.ShoppingBasket;
+import com.codurance.shoppingbasket.basket.ShoppingBasket;
 
 import static com.codurance.shoppingbasket.product.ProductType.BOOK;
 import static com.codurance.shoppingbasket.product.ProductType.VIDEO;

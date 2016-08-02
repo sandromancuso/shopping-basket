@@ -1,4 +1,4 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.basket;
 
 import com.codurance.shoppingbasket.product.Product;
 import com.codurance.shoppingbasket.product.ProductType;

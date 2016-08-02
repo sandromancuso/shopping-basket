@@ -1,9 +1,9 @@
 package com.codurance.shoppingbasket.discount;
 
-import com.codurance.shoppingbasket.ShoppingBasket;
+import com.codurance.shoppingbasket.basket.ShoppingBasket;
 import org.junit.Test;
 
-import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
+import static com.codurance.shoppingbasket.basket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
