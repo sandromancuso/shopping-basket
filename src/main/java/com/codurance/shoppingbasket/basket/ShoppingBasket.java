@@ -1,8 +1,6 @@
 package com.codurance.shoppingbasket.basket;
 
 import com.codurance.shoppingbasket.UserID;
-import com.codurance.shoppingbasket.discount.Discount;
-import com.codurance.shoppingbasket.discount.NoDiscount;
 import com.codurance.shoppingbasket.product.ProductType;
 
 import java.math.BigDecimal;
@@ -18,7 +16,6 @@ public class ShoppingBasket {
     private final UserID userID;
     private final LocalDate creationDate;
     private List<ShoppingBasketItem> items = new ArrayList<>();
-	private Discount discount = new NoDiscount();
 
 	ShoppingBasket(UserID userID, LocalDate creationDate) {
         this.userID = userID;
@@ -39,10 +36,6 @@ public class ShoppingBasket {
         return userID;
     }
 
-	void setDiscount(Discount discount) {
-		this.discount = discount;
-	}
-
 	public boolean contains(ProductType productType) {
 		return items.stream()
 					.anyMatch(i -> i.productType() == productType);
@@ -51,7 +44,7 @@ public class ShoppingBasket {
 	public int numberOf(ProductType productType) {
 		return items.stream()
 					.filter(i -> i.productType() == productType)
-					.map(i -> i.quantity())
+					.map(ShoppingBasketItem::quantity)
 					.reduce((quantity, acc) -> acc + quantity)
 					.orElse(0);
 	}
@@ -72,7 +65,6 @@ public class ShoppingBasket {
 				"userID=" + userID +
 				", creationDate=" + creationDate +
 				", items=" + items +
-				", discount=" + discount +
 				'}';
 	}
 }

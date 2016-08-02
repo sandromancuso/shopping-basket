@@ -1,6 +1,5 @@
 package com.codurance.shoppingbasket.product;
 
-import com.codurance.shoppingbasket.product.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -4,9 +4,9 @@ import com.codurance.shoppingbasket.basket.ShoppingBasket;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.codurance.shoppingbasket.basket.ShoppingBasketBuilder.aShoppingBasket;
 import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
 import static com.codurance.shoppingbasket.product.ProductBuilder.aVideo;
-import static com.codurance.shoppingbasket.basket.ShoppingBasketBuilder.aShoppingBasket;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
