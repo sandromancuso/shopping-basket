@@ -1,9 +1,10 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.product;
 
+import com.codurance.shoppingbasket.product.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.codurance.shoppingbasket.ProductService.*;
+import static com.codurance.shoppingbasket.product.ProductService.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 

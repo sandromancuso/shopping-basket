@@ -2,8 +2,8 @@ package com.codurance.shoppingbasket.discount;
 
 import com.codurance.shoppingbasket.ShoppingBasket;
 
-import static com.codurance.shoppingbasket.ProductType.BOOK;
-import static com.codurance.shoppingbasket.ProductType.VIDEO;
+import static com.codurance.shoppingbasket.product.ProductType.BOOK;
+import static com.codurance.shoppingbasket.product.ProductType.VIDEO;
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 

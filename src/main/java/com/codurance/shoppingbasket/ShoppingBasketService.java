@@ -1,6 +1,9 @@
 package com.codurance.shoppingbasket;
 
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
+import com.codurance.shoppingbasket.product.Product;
+import com.codurance.shoppingbasket.product.ProductID;
+import com.codurance.shoppingbasket.product.ProductService;
 
 public class ShoppingBasketService {
 

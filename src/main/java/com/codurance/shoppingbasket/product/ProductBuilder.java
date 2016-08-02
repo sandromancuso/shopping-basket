@@ -1,13 +1,10 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.product;
 
 import java.math.BigDecimal;
 
-import static com.codurance.shoppingbasket.ProductType.BOOK;
-import static com.codurance.shoppingbasket.ProductType.VIDEO;
-
 public class ProductBuilder {
 
-	private ProductType productType = BOOK;
+	private ProductType productType = ProductType.BOOK;
 	private ProductID productID = new ProductID("1234");
 	private BigDecimal price = BigDecimal.TEN;
 	private int quantity = 0;
@@ -17,11 +14,11 @@ public class ProductBuilder {
 	}
 
 	public static ProductBuilder aBook() {
-        return new ProductBuilder(BOOK);
+        return new ProductBuilder(ProductType.BOOK);
     }
 
 	public static ProductBuilder aVideo() {
-		return new ProductBuilder(VIDEO);
+		return new ProductBuilder(ProductType.VIDEO);
 	}
 
     public ProductBuilder withId(String value) {

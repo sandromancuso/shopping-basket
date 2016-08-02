@@ -1,13 +1,14 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.product.Product;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static com.codurance.shoppingbasket.ProductBuilder.aBook;
-import static com.codurance.shoppingbasket.ProductBuilder.aVideo;
-import static com.codurance.shoppingbasket.ProductType.BOOK;
-import static com.codurance.shoppingbasket.ProductType.VIDEO;
+import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
+import static com.codurance.shoppingbasket.product.ProductBuilder.aVideo;
+import static com.codurance.shoppingbasket.product.ProductType.BOOK;
+import static com.codurance.shoppingbasket.product.ProductType.VIDEO;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

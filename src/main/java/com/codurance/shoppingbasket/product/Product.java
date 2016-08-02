@@ -1,4 +1,4 @@
-package com.codurance.shoppingbasket;
+package com.codurance.shoppingbasket.product;
 
 import java.math.BigDecimal;
 

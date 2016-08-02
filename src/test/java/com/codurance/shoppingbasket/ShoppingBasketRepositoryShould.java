@@ -1,5 +1,7 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.product.Product;
+import com.codurance.shoppingbasket.product.ProductBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

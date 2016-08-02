@@ -2,6 +2,7 @@ package com.codurance.shoppingbasket;
 
 import com.codurance.shoppingbasket.discount.Discount;
 import com.codurance.shoppingbasket.discount.NoDiscount;
+import com.codurance.shoppingbasket.product.Product;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -3,6 +3,7 @@ package acceptance;
 import com.codurance.shoppingbasket.*;
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
 import com.codurance.shoppingbasket.discount.NoDiscount;
+import com.codurance.shoppingbasket.product.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static com.codurance.shoppingbasket.ProductService.BREAKING_BAD;
-import static com.codurance.shoppingbasket.ProductService.THE_HOBBIT;
+import static com.codurance.shoppingbasket.product.ProductService.BREAKING_BAD;
+import static com.codurance.shoppingbasket.product.ProductService.THE_HOBBIT;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.core.Is.is;

@@ -1,12 +1,11 @@
 package com.codurance.shoppingbasket.discount;
 
 import com.codurance.shoppingbasket.ShoppingBasket;
-import com.codurance.shoppingbasket.discount.AtLeastOneBookAndOneVideoDiscount;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.codurance.shoppingbasket.ProductBuilder.aBook;
-import static com.codurance.shoppingbasket.ProductBuilder.aVideo;
+import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
+import static com.codurance.shoppingbasket.product.ProductBuilder.aVideo;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;

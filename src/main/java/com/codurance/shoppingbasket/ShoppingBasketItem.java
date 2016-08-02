@@ -1,5 +1,8 @@
 package com.codurance.shoppingbasket;
 
+import com.codurance.shoppingbasket.product.Product;
+import com.codurance.shoppingbasket.product.ProductType;
+
 import java.math.BigDecimal;
 
 import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;

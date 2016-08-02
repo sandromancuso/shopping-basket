@@ -4,13 +4,16 @@ import com.codurance.shoppingbasket.discount.AtLeastOneBookAndOneVideoDiscount;
 import com.codurance.shoppingbasket.discount.Discount;
 import com.codurance.shoppingbasket.discount.DiscountCalculator;
 import com.codurance.shoppingbasket.discount.NoDiscount;
+import com.codurance.shoppingbasket.product.Product;
+import com.codurance.shoppingbasket.product.ProductID;
+import com.codurance.shoppingbasket.product.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.codurance.shoppingbasket.ProductBuilder.aBook;
+import static com.codurance.shoppingbasket.product.ProductBuilder.aBook;
 import static com.codurance.shoppingbasket.ShoppingBasketBuilder.aShoppingBasket;
 import static java.math.BigDecimal.TEN;
 import static org.hamcrest.core.Is.is;
@@ -33,7 +36,8 @@ public class ShoppingBasketServiceShould {
 
 
 	@Mock ShoppingBasketRepository shoppingBasketRepository;
-    @Mock ProductService productService;
+    @Mock
+    ProductService productService;
 	@Mock
 	DiscountCalculator discountCalculator;
 

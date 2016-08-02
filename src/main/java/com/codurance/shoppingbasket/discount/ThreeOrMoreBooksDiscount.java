@@ -2,7 +2,7 @@ package com.codurance.shoppingbasket.discount;
 
 import com.codurance.shoppingbasket.ShoppingBasket;
 
-import static com.codurance.shoppingbasket.ProductType.BOOK;
+import static com.codurance.shoppingbasket.product.ProductType.BOOK;
 
 public class ThreeOrMoreBooksDiscount implements Discount {
 
