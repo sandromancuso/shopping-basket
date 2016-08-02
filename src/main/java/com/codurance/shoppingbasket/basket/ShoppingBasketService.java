@@ -30,6 +30,11 @@ public class ShoppingBasketService {
 		return shoppingBasketRepository.basketFor(userID);
 	}
 
+	public Discount basketDiscount(UserID userID) {
+		ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(userID);
+		return discountCalculator.discountFor(shoppingBasket);
+	}
+
 	private void addProductToBasket(ProductID productID, int quantity, ShoppingBasket basket) {
 		Product product = productService.productFor(productID);
 		basket.add(new ShoppingBasketItem(product, quantity));
@@ -40,10 +45,5 @@ public class ShoppingBasketService {
 		if (!productService.hasEnoughItemsInStock(productID, quantity)) {
 			throw new NotEnoughItemsInStockException();
 		}
-	}
-
-	public Discount basketDiscount(UserID userID) {
-		ShoppingBasket shoppingBasket = shoppingBasketRepository.basketFor(userID);
-		return discountCalculator.discountFor(shoppingBasket);
 	}
 }
